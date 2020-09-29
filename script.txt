@@ -1,0 +1,19 @@
+cd .\Docker\Projects\com.gft.tsbo.dockercourse\environment\go
+./bin/ms-log.exe -db bolt://ms-log.db
+./bin/ms-log.exe -db pg://ms_log:msmonitor@127.0.0.1:5432/main
+./bin/measured.exe -type thermometer -address TH:01 -port 8081 -logger http://127.0.0.1:8080/log
+./bin/measured.exe -type thermometer -address TH:02 -port 8082 -logger http://127.0.0.1:8080/log
+./bin/measured.exe -type thermometer -address TH:03 -port 8083 -logger http://127.0.0.1:8080/log
+./bin/measured.exe -type thermometer -address TH:04 -port 8084 -logger http://127.0.0.1:8080/log
+
+
+curl -Method Put -Body '{ "host":  "0.0.0.0", "port":  8080, "status":  "OK", "name":  "Workstation", "type":  "thermometer", "address":  "TH:01", "unit":  "C", "raw":  2432, "formatted":  "24.32C", "stamp":  "2020-03-15T17:50:25.561266+01:00" }' http://127.0.0.1:8080/log
+
+'{ "host":  "0.0.0.0", "port":  8080, "status":  "OK", "name":  "Workstation", "type":  "thermometer", "address":  "TH:01", "unit":  "C", "raw":  2432, "formatted":  "24.32C", "stamp":  "2020-03-15T17:50:25.561266+01:00" }'
+
+
+boltcli 
+buckets *
+buckets measurements *
+buckets measurements <clientName> *
+
