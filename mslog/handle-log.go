@@ -30,9 +30,10 @@ func (ms *MsLog) httpGetLog(w http.ResponseWriter, r *http.Request) (status int,
 	dbMutex.Unlock()
 
 	status = http.StatusOK
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.Header().Set("cid", ms.GetName())
-	w.Header().Set("version", ms.GetVersion())
+	ms.SetResponseHeaders("application/json; charset=utf-8", w, r)
+	// w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	// w.Header().Set("cid", ms.GetName())
+	// w.Header().Set("version", ms.GetVersion())
 	w.WriteHeader(status)
 	contentLen = ms.Reply(w, response)
 	return status, contentLen, msg
@@ -49,6 +50,7 @@ func (ms *MsLog) httpPutLog(w http.ResponseWriter, r *http.Request) (int, conten
 
 	if err != nil {
 		msg = fmt.Sprintf("Failed to read request body, error was '%s'!", err.Error())
+		ms.SetResponseHeaders("", w, nil)
 		w.WriteHeader(status)
 		return http.StatusBadRequest, 0, msg
 	}
@@ -80,9 +82,10 @@ func (ms *MsLog) httpPutLog(w http.ResponseWriter, r *http.Request) (int, conten
 		msg = fmt.Sprintf("Got value '%s' of '%s' at '%s' version '%s'.", measure.GetFormatted(), measure.GetDeviceAddress(), measure.GetStamp().Format("2006-01-02 15:04:05"), logentry.Version)
 		var response LogResponse
 		InitLogResponse(&response, msg, measure, ms)
-		w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		w.Header().Set("cid", ms.GetName())
-		w.Header().Set("version", ms.GetVersion())
+		ms.SetResponseHeaders("application/json; charset=utf-8", w, r)
+		// w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		// w.Header().Set("cid", ms.GetName())
+		// w.Header().Set("version", ms.GetVersion())
 		w.WriteHeader(status)
 		contentLen = ms.Reply(w, response)
 		return status, contentLen, msg
@@ -118,9 +121,10 @@ func (ms *MsLog) httpPutLog(w http.ResponseWriter, r *http.Request) (int, conten
 	// response := NewLogResponse(msg, measure, ms)
 	var response LogResponse
 	InitLogResponse(&response, msg, measure, ms)
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	w.Header().Set("cid", ms.GetName())
-	w.Header().Set("version", ms.GetVersion())
+	ms.SetResponseHeaders("application/json; charset=utf-8", w, r)
+	// w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	// w.Header().Set("cid", ms.GetName())
+	// w.Header().Set("version", ms.GetVersion())
 	w.WriteHeader(status)
 	contentLen = ms.Reply(w, response)
 	return status, contentLen, msg
