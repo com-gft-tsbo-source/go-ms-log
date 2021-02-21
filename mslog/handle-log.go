@@ -31,9 +31,6 @@ func (ms *MsLog) httpGetLog(w http.ResponseWriter, r *http.Request) (status int,
 
 	status = http.StatusOK
 	ms.SetResponseHeaders("application/json; charset=utf-8", w, r)
-	// w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	// w.Header().Set("cid", ms.GetName())
-	// w.Header().Set("version", ms.GetVersion())
 	w.WriteHeader(status)
 	contentLen = ms.Reply(w, response)
 	return status, contentLen, msg
@@ -53,12 +50,6 @@ func (ms *MsLog) httpPutLog(w http.ResponseWriter, r *http.Request) (int, conten
 		ms.SetResponseHeaders("", w, nil)
 		w.WriteHeader(status)
 		return http.StatusBadRequest, 0, msg
-	}
-
-	clientID := r.Header.Get("cid")
-
-	if len(clientID) == 0 {
-		clientID = r.Header.Get("name")
 	}
 
 	//	var measure devicemeasure.DeviceMeasure
@@ -83,9 +74,6 @@ func (ms *MsLog) httpPutLog(w http.ResponseWriter, r *http.Request) (int, conten
 		var response LogResponse
 		InitLogResponse(&response, msg, measure, ms)
 		ms.SetResponseHeaders("application/json; charset=utf-8", w, r)
-		// w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		// w.Header().Set("cid", ms.GetName())
-		// w.Header().Set("version", ms.GetVersion())
 		w.WriteHeader(status)
 		contentLen = ms.Reply(w, response)
 		return status, contentLen, msg
@@ -122,9 +110,6 @@ func (ms *MsLog) httpPutLog(w http.ResponseWriter, r *http.Request) (int, conten
 	var response LogResponse
 	InitLogResponse(&response, msg, measure, ms)
 	ms.SetResponseHeaders("application/json; charset=utf-8", w, r)
-	// w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	// w.Header().Set("cid", ms.GetName())
-	// w.Header().Set("version", ms.GetVersion())
 	w.WriteHeader(status)
 	contentLen = ms.Reply(w, response)
 	return status, contentLen, msg
