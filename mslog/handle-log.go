@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"sync"
 
-	"com.gft.tsbo-training.src.go/common/device/implementation/devicemeasure"
-	"com.gft.tsbo-training.src.go/common/ms-framework/microservice"
+	"github.com/com-gft-tsbo-source/go-common/device/implementation/devicemeasure"
+	"github.com/com-gft-tsbo-source/go-common/ms-framework/microservice"
 )
 
 type LogEntry struct {

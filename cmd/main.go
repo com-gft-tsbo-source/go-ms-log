@@ -4,7 +4,7 @@ import (
 	"os"
 	"time"
 
-	"com.gft.tsbo-training.src.go/ms-log/mslog"
+	"github.com/com-gft-tsbo-source/go-ms-log/mslog"
 )
 
 // ###########################################################################

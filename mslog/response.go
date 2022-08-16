@@ -1,9 +1,9 @@
 package mslog
 
 import (
-	"com.gft.tsbo-training.src.go/common/device/implementation/devicedescriptor"
-	"com.gft.tsbo-training.src.go/common/device/implementation/devicemeasure"
-	"com.gft.tsbo-training.src.go/common/ms-framework/microservice"
+	"github.com/com-gft-tsbo-source/go-common/device/implementation/devicedescriptor"
+	"github.com/com-gft-tsbo-source/go-common/device/implementation/devicemeasure"
+	"github.com/com-gft-tsbo-source/go-common/ms-framework/microservice"
 )
 
 // ###########################################################################
