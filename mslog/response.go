@@ -22,7 +22,7 @@ type LogResponse struct {
 
 // InitLogResponse Constructor of a response of ms-measure
 func InitLogResponse(r *LogResponse, status string, obj devicemeasure.IDeviceMeasure, ms *MsLog) {
-	microservice.InitResponseFromMicroService(&r.Response, ms, status)
+	microservice.InitResponseFromMicroService(&r.Response, ms, 200, status)
 	devicedescriptor.InitFromDeviceDescriptor(&r.DeviceDescriptor, obj)
 }
 
@@ -40,7 +40,7 @@ type DBResponse struct {
 
 // InitDBResponse ...
 func InitDBResponse(r *DBResponse, status string, entries *map[string]*LogEntry, ms *MsLog) {
-	microservice.InitResponseFromMicroService(&r.Response, ms, status)
+	microservice.InitResponseFromMicroService(&r.Response, ms, 200, status)
 	r.Entries = make(map[string]LogEntry)
 
 	for key, value := range *entries {
